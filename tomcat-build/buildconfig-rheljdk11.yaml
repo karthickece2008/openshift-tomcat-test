@@ -36,7 +36,7 @@ spec:
           ln -s /opt/apache-tomcat-$TOMCAT_VERSION $CATALINA_HOME
 
       # cleanup
-      RUN rm -rf /tmp/* /var/cache/apk/*
+      RUN rm -rf /tmp/apache*
 
       EXPOSE 8080
 
