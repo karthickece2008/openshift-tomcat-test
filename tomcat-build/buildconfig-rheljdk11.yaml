@@ -21,7 +21,7 @@ spec:
       RUN microdnf -y update && \
           microdnf -y upgrade && \
           microdnf install -y curl && \
-          microdnf install -y gunzip && \
+          microdnf install -y gzip && \
           microdnf install -y tar
 
       # Switch back to jboss user
