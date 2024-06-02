@@ -15,9 +15,9 @@ spec:
           CATALINA_HOME=/opt/tomcat
 
       # init
-      RUN yum -y update && \
-          yum -y upgrade && \
-          yum install -y curl 
+      RUN microdnf -y update && \
+          microdnf -y upgrade && \
+          microdnf install -y curl 
 
       RUN mkdir -p /opt
 
