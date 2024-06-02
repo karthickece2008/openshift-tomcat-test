@@ -14,10 +14,16 @@ spec:
           TOMCAT_VERSION=9.0.71 \
           CATALINA_HOME=/opt/tomcat
 
+      # Switch to root user 
+      USER root 
+
       # init
       RUN microdnf -y update && \
           microdnf -y upgrade && \
           microdnf install -y curl 
+
+      # Switch back to jboss user
+      USER jboss
 
       RUN mkdir -p /opt
 
