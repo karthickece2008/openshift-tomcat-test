@@ -1,0 +1,50 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+    name: tomcat-rheljdk11
+spec:
+  runPolicy: Serial
+  source:
+    dockerfile: |
+      # Use a minimal image as parent
+      FROM ubi8/openjdk-11:latest
+
+      # Environment variables
+      ENV TOMCAT_MAJOR=9 \
+          TOMCAT_VERSION=9.0.71 \
+          CATALINA_HOME=/opt/tomcat
+
+      # init
+      RUN yum -y update && \
+          yum -y upgrade && \
+          yum install -y curl 
+
+      RUN mkdir -p /opt
+
+      # install tomcat
+      RUN curl -jkSL -o /tmp/apache-tomcat.tar.gz http://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR}/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz && \
+          gunzip /tmp/apache-tomcat.tar.gz && \
+          tar -C /opt -xf /tmp/apache-tomcat.tar && \
+          ln -s /opt/apache-tomcat-$TOMCAT_VERSION $CATALINA_HOME
+
+      # cleanup
+      RUN rm -rf /tmp/* /var/cache/apk/*
+
+      EXPOSE 8080
+
+      COPY startup.sh /opt/startup.sh
+
+      ENTRYPOINT /opt/startup.sh
+
+      WORKDIR $CATALINA_HOME
+
+      RUN chmod -R g+rwx /opt/startup.sh /opt/apache-tomcat-$TOMCAT_VERSION 
+
+  strategy:
+    type: Docker
+    dockerStrategy:
+      noCache: false
+  output:
+    to:
+      kind: ImageStreamTag
+      name: "tomcat-rheljdk11:9.0.71"
