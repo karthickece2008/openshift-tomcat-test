@@ -1,0 +1,4 @@
+oc create -f buildconfig.yaml
+oc create imagestream tomcat-jdk8
+oc start-build tomcat-jdk8 --from-dir=./ --follow
+oc get imagestream tomcat-jdk8
