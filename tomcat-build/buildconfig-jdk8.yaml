@@ -39,6 +39,8 @@ spec:
 
       WORKDIR $CATALINA_HOME
 
+      RUN chmod -R g+rwx /opt/startup.sh /opt/apache-tomcat-$TOMCAT_VERSION 
+
   strategy:
     type: Docker
     dockerStrategy:
