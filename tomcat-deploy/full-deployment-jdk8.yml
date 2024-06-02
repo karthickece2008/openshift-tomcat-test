@@ -17,6 +17,7 @@ spec:
       containers:
         - name: tomcat-jdk8-sample
           image: "default-route-openshift-image-registry.apps.sandbox-m2.ll9k.p1.openshiftapps.com/karthick5268a-dev/tomcat-jdk8:8.5.37"
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
               name: serve
