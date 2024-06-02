@@ -48,7 +48,6 @@ spec:
 
       # Switch to root user 
       USER root 
-
       RUN chmod -R g+rwx /opt/startup.sh /opt/apache-tomcat-$TOMCAT_VERSION 
 
   strategy:
