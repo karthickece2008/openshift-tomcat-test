@@ -15,9 +15,9 @@ spec:
           CATALINA_HOME=/opt/tomcat
 
       # init
-      RUN apk -U upgrade --update && \
-          apk add curl && \
-          apk add ttf-dejavu
+      RUN apt update && \
+          apt upgrade && \
+          apt install curl 
 
       RUN mkdir -p /opt
 
@@ -28,8 +28,7 @@ spec:
           ln -s /opt/apache-tomcat-$TOMCAT_VERSION $CATALINA_HOME
 
       # cleanup
-      RUN apk del curl && \
-          rm -rf /tmp/* /var/cache/apk/*
+      RUN rm -rf /tmp/* /var/cache/apk/*
 
       EXPOSE 8080
 
