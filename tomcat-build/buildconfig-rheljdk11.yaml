@@ -20,7 +20,9 @@ spec:
       # init
       RUN microdnf -y update && \
           microdnf -y upgrade && \
-          microdnf install -y curl 
+          microdnf install -y curl && \
+          microdnf install -y gunzip && \
+          microdnf install -y tar
 
       # Switch back to jboss user
       USER jboss
