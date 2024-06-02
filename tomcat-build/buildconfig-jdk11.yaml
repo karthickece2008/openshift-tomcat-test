@@ -15,9 +15,9 @@ spec:
           CATALINA_HOME=/opt/tomcat
 
       # init
-      RUN apt update && \
-          apt upgrade && \
-          apt install curl 
+      RUN apt update -y b&& \
+          apt upgrade -y && \
+          apt install -y curl 
 
       RUN mkdir -p /opt
 
