@@ -7,7 +7,7 @@ spec:
   source:
     dockerfile: |
       # Use a minimal image as parent
-      FROM openjdk:11-jdk-alpine
+      FROM adoptopenjdk/openjdk11:jdk-11.0.16.1_1
 
       # Environment variables
       ENV TOMCAT_MAJOR=9 \
