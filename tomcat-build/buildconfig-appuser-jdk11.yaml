@@ -23,6 +23,7 @@ spec:
       RUN rm -rf /var/cache/apk/*
 
       # RUN addgroup -g root -S appuser
+      RUN useradd -ms /bin/bash appuser
       RUN adduser appuser root
       USER appuser
 
