@@ -55,4 +55,4 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: "tomcat-appuser-jdk11:$TOMCAT_VERSION"
+      name: "tomcat-appuser-jdk11:9.0.104"
