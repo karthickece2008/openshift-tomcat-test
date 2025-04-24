@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: tomcat-appuser-jdk11-sample
-          image: "default-route-openshift-image-registry.apps.sandbox-m2.ll9k.p1.openshiftapps.com/karthick5268a-dev/tomcat-appuser-jdk11:9.0.71"
+          image: "default-route-openshift-image-registry.apps.rm3.7wse.p1.openshiftapps.com/karthickconnects-dev/tomcat-appuser-jdk11:9.0.71"
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
