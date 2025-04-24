@@ -19,27 +19,16 @@ spec:
           apt -y upgrade && \
           apt install -y curl 
 
-      # cleanup
-      RUN rm -rf /var/cache/apk/*
-
-      # RUN addgroup -g root -S appuser
-      RUN useradd -ms /bin/bash appuser
-      RUN adduser appuser root
-      USER appuser
-
       RUN mkdir -p /opt
-
-      RUN sleep 10
 
       # install tomcat
       RUN curl -jkSL -o /tmp/apache-tomcat.tar.gz http://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR}/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz && \
           gunzip /tmp/apache-tomcat.tar.gz && \
-          sleep 5 && \
           tar -C /opt -xf /tmp/apache-tomcat.tar && \
           ln -s /opt/apache-tomcat-$TOMCAT_VERSION $CATALINA_HOME
 
       # cleanup
-      RUN rm -rf /tmp/*
+      RUN rm -rf /tmp/* /var/cache/apk/*
 
       EXPOSE 8080
 
@@ -48,6 +37,13 @@ spec:
       ENTRYPOINT /opt/startup.sh
 
       WORKDIR $CATALINA_HOME
+
+      # RUN addgroup -g root -S appuser
+      RUN useradd -ms /bin/bash appuser
+      RUN adduser appuser root
+      USER appuser
+
+      RUN chown -R appuser /opt
 
       RUN chmod -R g+rwx /opt/startup.sh /opt/apache-tomcat-$TOMCAT_VERSION 
 
