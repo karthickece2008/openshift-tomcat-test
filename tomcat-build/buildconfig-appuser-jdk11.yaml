@@ -41,11 +41,12 @@ spec:
       # RUN addgroup -g root -S appuser
       RUN useradd -ms /bin/bash appuser
       RUN adduser appuser root
-      USER appuser
-
+     
       RUN chown -R appuser /opt
 
       RUN chmod -R g+rwx /opt/startup.sh /opt/apache-tomcat-$TOMCAT_VERSION 
+
+       USER appuser
 
   strategy:
     type: Docker
