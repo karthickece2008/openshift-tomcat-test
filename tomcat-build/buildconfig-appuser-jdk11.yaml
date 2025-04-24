@@ -11,7 +11,7 @@ spec:
 
       # Environment variables
       ENV TOMCAT_MAJOR=9 \
-          TOMCAT_VERSION=9.0.71 \
+          TOMCAT_VERSION=9.0.104 \
           CATALINA_HOME=/opt/tomcat
 
       # init
@@ -55,4 +55,4 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: "tomcat-appuser-jdk11:9.0.71"
+      name: "tomcat-appuser-jdk11:$TOMCAT_VERSION"
